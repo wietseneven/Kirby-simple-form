@@ -7,9 +7,9 @@ kirbytext::$tags['saveForm'] = array(
 	'html' => function($tag) {
 		// If form was submitted go proces to form, else render the form
 		if ($_POST["submitted"] == 'true') {
-			require_once('procesForm.php');
+			require_once('lib/procesForm.php');
 		} else {
-			require_once('createForm.php');
+			require_once('lib/createForm.php');
 		}
 	}
 );
