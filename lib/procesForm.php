@@ -1,6 +1,6 @@
 <?php
 	$formData = $_POST;
-	$formName = $tag->attr('saveForm');
+	$formName = $tag->attr('simpleForm');
 	$fileURI = $tag->page()->root().'/'.$formName.'.csv';
 
 	// We can remove the filedir from the array
@@ -29,8 +29,6 @@
 
 	}
 
-
 	$formFile = fopen($fileURI, "a") or die("Unable to open file!");
 	fputcsv($formFile, $formData);
-
 	fclose($formFile);

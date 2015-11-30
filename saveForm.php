@@ -1,8 +1,9 @@
 <?php
 
-kirbytext::$tags['saveForm'] = array(
+kirbytext::$tags['simpleForm'] = array(
 	'attr' => array(
 		'fields',
+		'submit',
 		'confirmation'
 	),
 	'html' => function($tag) {
@@ -12,6 +13,7 @@ kirbytext::$tags['saveForm'] = array(
 			// Clear post data to prevent double submissions
 			header('Location:'.$_SERVER['PHP_SELF'].'?formres=true');
 		} else if ($_GET['formres'] == 'true') {
+			// If custom confirmation is set
 			if ($tag->attr('confirmation')) {
 				$confirmationMessage = $tag->attr('confirmation');
 			} else {
