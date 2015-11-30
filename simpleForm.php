@@ -1,5 +1,6 @@
 <?php
-require_once('lib/procesForm.php');
+require_once('lib/defineForm.php');
+require_once('lib/processForm.php');
 kirbytext::$tags['simpleForm'] = array(
 	'attr' => array(
 		'fields',
@@ -8,22 +9,21 @@ kirbytext::$tags['simpleForm'] = array(
 	),
 	'html' => function($tag) {
 		// If form was submitted go proces to form, else render the form
-		if ($_POST["submitted"] == 'true') {
+		if ($_POST) {
 
-			$processForms = new processForm($_POST, $tag->attr('simpleForm'),$tag->page()->root());
-			echo $processForms->saveForm();
-
-		} else if ($_GET['formres'] == 'true') {
-			// If custom confirmation is set
-			if ($tag->attr('confirmation')) {
-				$confirmationMessage = $tag->attr('confirmation');
-			} else {
-				$confirmationMessage = 'Form submitted succesfully';
+			$processForms = new processForm($tag->attr('simpleForm'), $_POST, $tag->page()->root());
+			if ($processForms->saveForm() == 'success'){
+				header('Location:'.$_SERVER['PHP_SELF'].'?sForm=true');
 			}
-			return $confirmationMessage;
+
+
+		} else if ($_GET['sForm'] == true) {
+			return $tag->attr('confirmation');
 		} else {
-			require_once(__DIR__ . DS . 'lib' . DS . 'createForm.php');
-			return $form;
+
+			$simpleForm = new simpleForm($tag->attr('simpleForm'), $tag->attr('fields'), $tag->attr('submit'));
+			return $simpleForm->createForm();
+
 		}
 
 	}
