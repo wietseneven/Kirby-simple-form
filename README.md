@@ -25,3 +25,6 @@ The final version of the 'Kirbytag' will look like this (for this example form):
 ```
 (simpleForm: myFormName fields: input:name,email:emailaddress:required,textarea:message confirmation: Succesvol opgeslagen)
 ```
+
+#### CSV Database
+All the form inputs will be saved to a CSV file saved in the the page directory
