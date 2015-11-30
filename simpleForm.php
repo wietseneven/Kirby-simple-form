@@ -1,6 +1,6 @@
 <?php
-require_once('lib/defineForm.php');
-require_once('lib/processForm.php');
+require_once('lib/class.defineForm.php');
+require_once('lib/class.processForm.php');
 kirbytext::$tags['simpleForm'] = array(
 	'attr' => array(
 		'fields',
